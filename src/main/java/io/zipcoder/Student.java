@@ -10,6 +10,7 @@ public class Student {
     public Student(String firstName, String lastName, Double[] examScores){
         this.firstName = firstName;
         this.lastName = lastName;
+        this.examScores = new ArrayList<>();
         for(int i = 0; i < examScores.length; i++) {
             this.examScores.add(examScores[i]);
         }

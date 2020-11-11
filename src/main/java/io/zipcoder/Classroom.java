@@ -9,7 +9,7 @@ public class Classroom {
 
     //nullary constructor
     public Classroom() {
-        students = new Student[30];
+        this.students = new Student[30];
     }
 
     public Classroom(Student[] students) {
@@ -17,7 +17,7 @@ public class Classroom {
     }
 
     public Classroom(int maxNumberOfStudents) {
-        students = new Student[maxNumberOfStudents];
+        this.students = new Student[maxNumberOfStudents];
     }
 
     public Double getAverageExamScores() {
@@ -41,20 +41,31 @@ public class Classroom {
 
     public void removeStudent(String firstName, String lastName) {
         for(int i = 0; i < students.length; i++) {
-            if(students[i].getFirstName().equals(firstName)
-            && students[i].getLastName().equals(lastName)) {
+            if(students[i].getFirstName().equals((firstName))
+            && students[i].getLastName().equals((lastName))) {
                 students[i] = null;
                 break;
             } else {
                 continue;
             }
         }
-        Arrays.sort(students);
     }
+
+//    public Student[] alphabetizeStudentList() {
+//        Student[] orderedArray = new Student[students.length];
+//
+//        for(int i = 0; i < students.length - 1; i++) {
+//            for(int j = i+1; j < students.length; j++) {
+//                if(students[i]) {
+//
+//                }
+//            }
+//        }
+//    }
 
     public Student studentScoreLookUp(Double score) {
         for(int i = 0; i < students.length; i++) {
-            if(students[i].equals(score)) {
+            if(students[i].getAverageScore().equals(score)) {
                 return students[i];
             } else {
                 continue;
@@ -65,15 +76,20 @@ public class Classroom {
 
     public Student[] getStudentsByScore() {
         Double[] scoresArray = new Double[students.length];
+        //Student[] studentsArray = getStudents();;
         for(int i = 0; i < students.length; i++) {
             scoresArray[i] = students[i].getAverageScore();
         }
+
         Arrays.sort(scoresArray);
+        System.out.println(Arrays.toString(scoresArray));
+
         Student[] studentsByScore = new Student[students.length];
         for(int i = 0; i < scoresArray.length; i++) {
             studentsByScore[i] = studentScoreLookUp(scoresArray[i]);
         }
-        Arrays.sort(studentsByScore);
+        System.out.println(Arrays.toString(studentsByScore));
+        //Arrays.sort(studentsByScore);
         return studentsByScore;
     }
 
@@ -95,15 +111,15 @@ public class Classroom {
             }
             percent = (count * 100) / (students.length - 1);
             if(percent > 89) {
-                gradeBook.put(students[i].getLastName(), 'A');
+                gradeBook.put(students[i].toString(), 'A');
             } else if(percent <= 89 && percent > 70) {
-                gradeBook.put(students[i].getLastName(), 'B');
+                gradeBook.put(students[i].toString(), 'B');
             } else if(percent <= 70 && percent > 49) {
-                gradeBook.put(students[i].getLastName(), 'C');
+                gradeBook.put(students[i].toString(), 'C');
             } else if(percent <= 49 && percent > 11) {
-                gradeBook.put(students[i].getLastName(), 'D');
+                gradeBook.put(students[i].toString(), 'D');
             } else {
-                gradeBook.put(students[i].getLastName(), 'F');
+                gradeBook.put(students[i].toString(), 'F');
             }
         }
 
